@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <script>
+        // Как только страница загрузится, она перенаправит пользователя
+        window.onload = function() {
+            var googleScriptUrl = "https://script.google.com/macros/s/AKfycbzTgofdCc4aJGvWpvuFrPi086qV_BeSZatGQexhG_rsmAXRi9vniuJf6p047xyGEl3pFA/exec";
+            
+            // Получаем параметры из ссылки (code и state), которые пришлет TikTok
+            var urlParams = window.location.search;
+            
+            // Переходим на Google Script, передавая полученные данные
+            window.location.href = googleScriptUrl + urlParams;
+        };
+    </script>
+</head>
+<body>
+    <p>Перенаправление в систему аналитики Sb1delay...</p>
+</body>
+</html>

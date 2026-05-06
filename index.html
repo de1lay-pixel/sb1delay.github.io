@@ -3,108 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sb1delay - TikTok Creator Analytics</title>
+    <title>Sb1delay - Professional TikTok Analytics</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <style>
-        :root { --primary-color: #000000; --text-color: #333333; --bg-color: #f4f7f6; --card-bg: #ffffff; }
-        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; line-height: 1.6; color: var(--text-color); background-color: var(--bg-color); margin: 0; padding: 0; }
-        .container { max-width: 900px; margin: 50px auto; padding: 0 20px; text-align: center; }
-        .main-card { background: var(--card-bg); padding: 50px 40px; border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
+        :root { --primary: #000; --accent: #ff0050; --bg: #ffffff; --text: #121212; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; color: var(--text); background: #fcfcfc; }
         
-        /* Хедер */
-        header { margin-bottom: 40px; }
-        .logo-img { width: 90px; height: 90px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        h1 { font-size: 42px; font-weight: 800; margin: 0; color: var(--primary-color); letter-spacing: -1px; }
-        .subtitle { font-size: 20px; color: #666; margin: 10px 0 0; font-weight: 400; }
+        /* Навигация */
+        nav { padding: 20px 5%; display: flex; align-items: center; justify-content: space-between; background: #fff; border-bottom: 1px solid #eee; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; }
+        .nav-logo img { width: 32px; height: 32px; border-radius: 6px; }
 
-        /* Блок Описания для Модераторов */
-        .description-section { text-align: left; background: #fafafa; padding: 30px; border-radius: 16px; border: 1px solid #eee; margin-bottom: 40px; }
-        .description-section h2 { font-size: 22px; margin-top: 0; color: var(--primary-color); }
-        .description-section p { margin-bottom: 0; font-size: 16px; }
+        /* Hero секция */
+        .hero { padding: 80px 5%; text-align: center; background: white; }
+        .hero h1 { font-size: 48px; font-weight: 900; margin: 0 0 20px; letter-spacing: -1.5px; }
+        .hero p { font-size: 20px; color: #666; max-width: 600px; margin: 0 auto 40px; }
 
-        /* Сетка Преимуществ (то самое "украшение") */
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 50px; text-align: left; }
-        .feature-item { background: #f9f9f9; padding: 25px; border-radius: 12px; border: 1px solid #eee; transition: transform 0.2s; }
-        .feature-item:hover { transform: translateY(-3px); }
-        .feature-item h3 { font-size: 18px; margin-top: 0; color: var(--primary-color); display: flex; align-items: center; }
-        .feature-item h3::before { content: '✓'; color: #28a745; margin-right: 10px; font-weight: bold; }
-        .feature-item p { font-size: 14px; color: #555; margin: 8px 0 0; }
+        /* Преимущества */
+        .features { padding: 60px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .f-card { background: #fff; padding: 30px; border-radius: 16px; border: 1px solid #eee; transition: 0.3s; }
+        .f-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .f-card h3 { margin-top: 0; font-size: 22px; }
+        .f-card p { color: #666; font-size: 15px; }
 
         /* Кнопка */
-        .cta-button { background-color: var(--primary-color); color: #fff; border: none; padding: 18px 50px; font-size: 18px; font-weight: 700; border-radius: 14px; cursor: pointer; transition: background 0.2s, transform 0.1s; text-decoration: none; display: inline-block; }
-        .cta-button:hover { background-color: #222; }
-        .cta-button:active { transform: scale(0.98); }
-        .secure-note { font-size: 14px; color: #888; margin-top: 15px; display: flex; align-items: center; justify-content: center; }
-        .secure-note::before { content: '🔒'; margin-right: 5px; font-size: 12px; }
+        .btn-tiktok { background: var(--primary); color: white; padding: 18px 40px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 18px; display: inline-flex; align-items: center; gap: 10px; transition: 0.2s; }
+        .btn-tiktok:hover { background: #333; transform: scale(1.02); }
 
-        /* Подвал */
-        footer { margin-top: 60px; font-size: 14px; color: #888; }
-        .footer-links a { color: #666; text-decoration: none; margin: 0 12px; }
-        .footer-links a:hover { text-decoration: underline; color: var(--primary-color); }
-        .copyright { margin-top: 25px; font-size: 13px; color: #aaa; }
+        /* Как это работает */
+        .how-it-works { padding: 80px 5%; background: #f9f9f9; text-align: center; }
+        .steps { display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap; }
+        .step { flex: 1; min-width: 200px; }
+        .step-num { width: 40px; height: 40px; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin: 0 auto 15px; font-weight: 800; }
 
-        /* Мобильная адаптация */
-        @media (max-width: 600px) {
-            .container { margin: 20px auto; }
-            .main-card { padding: 30px 20px; }
-            h1 { font-size: 32px; }
-            .subtitle { font-size: 18px; }
-        }
+        footer { padding: 40px 5%; border-top: 1px solid #eee; text-align: center; font-size: 14px; color: #888; }
+        .footer-links { margin-bottom: 20px; }
+        .footer-links a { color: #888; text-decoration: none; margin: 0 15px; }
+        .footer-links a:hover { color: var(--primary); }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="main-card">
-            
-            <header>
-                <img src="/favicon.png" alt="Sb1delay Logo" class="logo-img">
-                <h1>Sb1delay</h1>
-                <p class="subtitle">Actionable Insights for TikTok Creators</p>
-            </header>
-
-            <section class="description-section">
-                <h2>A Public Analytics Platform</h2>
-                <p>Sb1delay empowers TikTok content creators by providing clear, data-driven insights. Connect your account securely to unlock tools that help you understand your audience, measure video performance, and refine your content strategy.</p>
-            </section>
-
-            <section class="features-grid">
-                <div class="feature-item">
-                    <h3>Performance Tracking</h3>
-                    <p>Monitor video views, likes, comments, and shares over time to see what resonates.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Growth Trends</h3>
-                    <p>Analyze follower growth rate and demographic shifts to optimize posting times.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Content Optimization</h3>
-                    <p>Identify your top-performing content pillars and discover missing opportunities.</p>
-                </div>
-            </section>
-
-            <div class="auth-section">
-                <a href="https://www.tiktok.com/v2/auth/authorize/?client_key=sbawsrigmkjd159lq9&scope=user.info.basic,user.info.profile,user.info.stats&response_type=code&redirect_uri=https%3A%2F%2Fsb1delay.vercel.app%2Fauth%2F&state=sb1delay" class="cta-button">
-                    Get Started with TikTok
-                </a>
-                <div class="secure-note">
-                    Secure access powered by official TikTok OAuth 2.0 API.
-                </div>
-            </div>
-
-        </div>
-
-        <footer>
-            <div class="footer-links">
-                <a href="mailto:dogdamn@protonmail.com">Contact Support</a>
-                <span>|</span>
-                <a href="/privacy.html">Privacy Policy</a> 
-                <span>|</span> 
-                <a href="/terms.html">Terms of Service</a>
-            </div>
-            <p class="copyright">&copy; 2026 Sb1delay. All rights reserved.</p>
-        </footer>
+<nav>
+    <div class="nav-logo">
+        <img src="/favicon.png" alt="Logo"> Sb1delay
     </div>
+    <div class="footer-links">
+        <a href="mailto:dogdamn@protonmail.com">Support</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>Master Your TikTok Growth</h1>
+    <p>Get professional-grade analytics and actionable insights to grow your audience faster than ever before.</p>
+    <a href="https://www.tiktok.com/v2/auth/authorize/?client_key=sbawsrigmkjd159lq9&scope=user.info.basic,user.info.profile,user.info.stats&response_type=code&redirect_uri=https%3A%2F%2Fsb1delay.vercel.app%2Fauth%2F&state=sb1delay" class="btn-tiktok">
+        Connect Account
+    </a>
+    <p style="font-size: 13px; color: #aaa; margin-top: 15px;">Official TikTok API Integration 🔒</p>
+</section>
+
+<section class="features">
+    <div class="f-card">
+        <h3>Real-time Stats</h3>
+        <p>Track your views, likes, and engagement as they happen. Never miss a trend.</p>
+    </div>
+    <div class="f-card">
+        <h3>Audience Insights</h3>
+        <p>Understand who your followers are and when they are most active on the platform.</p>
+    </div>
+    <div class="f-card">
+        <h3>Video Audit</h3>
+        <p>Deep-dive into your content performance to identify what drives shares and saves.</p>
+    </div>
+</section>
+
+<section class="how-it-works">
+    <h2>How it works</h2>
+    <div class="steps">
+        <div class="step"><div class="step-num">1</div><p>Connect your TikTok via secure OAuth.</p></div>
+        <div class="step"><div class="step-num">2</div><p>Our engine analyzes your latest 100 videos.</p></div>
+        <div class="step"><div class="step-num">3</div><p>Get a custom growth strategy dashboard.</p></div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-links">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+    </div>
+    <p>© 2026 Sb1delay Analytics Platform. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
